@@ -1,21 +1,39 @@
-<app-navbar></app-navbar>
-<!--
-<div class="container d-flex">
-  <p>
-    <a
-      href="../active-post/active-post.component.html"
-      class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover me-5"
-      >Active Posts</a
-    >
-  </p>
-  <p>
-    <a
-      href="../inactive-post/inactive-post.component.html"
-      class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-      >Inactive posts</a
-    >
-  </p>
-</div> -->
+<h2>Post in evidenza</h2>
 
-<app-active-post></app-active-post>
-<app-inactive-post></app-inactive-post>
+<div *ngIf="postInEvidenza" class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ postInEvidenza.title }}</h5>
+    <p class="card-text">
+      {{ postInEvidenza.body }}
+    </p>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let tag of postInEvidenza.tags" class="list-group-item">
+        {{ tag }}
+      </li>
+    </ul>
+    <button class="btn btn-success">Leggi</button>
+  </div>
+</div>
+
+<h2>Potrebbero piacerti questi post</h2>
+
+<div class="row">
+  <ng-container *ngFor="let post of postArray">
+    <div class="col col-12 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">
+            {{ post.body }}
+          </p>
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let tag of postInEvidenza.tags" class="list-group-item">
+              {{ tag }}
+            </li>
+          </ul>
+          <button class="btn btn-success">Leggi</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
