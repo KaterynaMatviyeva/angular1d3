@@ -11,37 +11,25 @@ import { iJsonResponse } from '../../interfaces/jason-response';
 export class ActivePostComponent {
   post: iPost[] = [];
 
-  constructor(private route: ActivatedRoute) {}
   ngOnInit() {
-    //recupera dettagli rotta
-
-    this.route.params.subscribe((params) => {
-      console.log('questi sono i params', params);
-      fetch('db.json')
-        .then((response) => {
-          if (response.ok) {
-            return <Promise<iJsonResponse>>response.json();
-          } else {
-            throw new Error('Errore nel primo then');
+    fetch('db.json')
+      .then((response) => {
+        if (response.ok) {
+          return <Promise<iJsonResponse>>response.json();
+        } else {
+          throw new Error('Errore nel primo then');
+        }
+      })
+      .then((data) => {
+        console.log('siamo nel then e questi sono i data', data);
+        data.posts.forEach((p) => {
+          if (p.active === true) {
+            this.post.push(p);
           }
-        })
-        .then((data) => {
-          console.log('siamo nel then e questi sono i data', data);
-          data.posts.forEach((p) => {
-            if (p.active === true) {
-              this.post.push(p);
-            }
-          });
-        })
-        .catch((err) => {
-          console.log('errore', err);
         });
-
-      //qua facciamo la fetch per recuperare l'array di post tramite find(p =>p.id ==params[id]/)
-      //if (found){this.post = found}
-      //e sopra dichisari una const found
-      //un controllo per il caricamento della pagina cosi non da undefined
-    });
-    //recupera l'oggetto
+      })
+      .catch((err) => {
+        console.log('errore', err);
+      });
   }
 }

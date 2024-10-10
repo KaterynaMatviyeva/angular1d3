@@ -12,9 +12,7 @@ export class PostDetailComponent {
   post!: iPost;
   constructor(private route: ActivatedRoute) {}
   ngOnInit() {
-    //recupera dettagli rotta
-
-    this.route.params.subscribe((params: any) => {
+    this.route.params.subscribe((params) => {
       console.log('questi sono i params', params);
       fetch('db.json')
         .then((response) => {
@@ -25,7 +23,8 @@ export class PostDetailComponent {
           }
         })
         .then((data) => {
-          const foundPost = data.posts.find((p) => p.id == params.id);
+          const foundPost = data.posts.find((p) => p.id == params['id']);
+          //un controllo per il caricamento della pagina cosi non da undefined
           if (foundPost) {
             this.post = foundPost;
           } else {
@@ -35,12 +34,6 @@ export class PostDetailComponent {
         .catch((err) => {
           console.log('errore', err);
         });
-
-      //qua facciamo la fetch per recuperare l'array di post tramite find(p =>p.id ==params[id]/)
-      //if (found){this.post = found}
-      //e sopra dichisari una const found
-      //un controllo per il caricamento della pagina cosi non da undefined
     });
-    //recupera l'oggetto
   }
 }
