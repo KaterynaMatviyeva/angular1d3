@@ -7,6 +7,7 @@ import { InactivePostComponent } from './components/inactive-post/inactive-post.
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
     PostDetailComponent,
     NavbarComponent,
     HomeComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

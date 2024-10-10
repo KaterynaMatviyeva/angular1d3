@@ -4,14 +4,19 @@
   <div class="card-body">
     <h5 class="card-title">{{ postInEvidenza.title }}</h5>
     <p class="card-text">
-      {{ postInEvidenza.body }}
+      <!-- {{ postInEvidenza.body }} -->
     </p>
     <ul class="list-group list-group-flush">
       <li *ngFor="let tag of postInEvidenza.tags" class="list-group-item">
         {{ tag }}
       </li>
     </ul>
-    <button class="btn btn-success">Leggi</button>
+    <button
+      [routerLink]="['post-detail', postInEvidenza.id]"
+      class="btn btn-success"
+    >
+      Leggi
+    </button>
   </div>
 </div>
 
@@ -24,14 +29,19 @@
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
           <p class="card-text">
-            {{ post.body }}
+            <!-- {{ post.body }} -->
           </p>
           <ul class="list-group list-group-flush">
             <li *ngFor="let tag of postInEvidenza.tags" class="list-group-item">
               {{ tag }}
             </li>
           </ul>
-          <button class="btn btn-success">Leggi</button>
+          <button
+            [routerLink]="['post-detail', post.id]"
+            class="btn btn-success"
+          >
+            Leggi
+          </button>
         </div>
       </div>
     </div>
