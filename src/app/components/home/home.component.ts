@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       .then((data) => {
         console.log(data);
         this.postInEvidenza = data.posts[0];
-        this.postArray = data.posts.slice(1, 5);
+        this.postArray = data.posts.slice(1, 9);
       })
       .catch((err) => {
         console.log('errore dal server', err);
